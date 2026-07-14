@@ -1,0 +1,733 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600&display=swap");
+
+:root {
+  --main-color: #65715d;
+  --main-dark: #3f493a;
+  --light-green: #eef1eb;
+  --background: #f8f7f3;
+  --white: #ffffff;
+  --text: #282a27;
+  --sub-text: #70736d;
+  --line: #dedfd9;
+  --header-height: 76px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: "Noto Sans KR", sans-serif;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+section {
+  scroll-margin-top: var(--header-height);
+}
+
+/* 헤더 */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  width: 100%;
+  height: var(--header-height);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--white);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  color: var(--text);
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  font-family: "Playfair Display", "Noto Sans KR", serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.navigation a {
+  position: relative;
+}
+
+.navigation a:not(.reservation-link)::after {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transition: width 0.25s ease;
+}
+
+.navigation a:hover::after {
+  width: 100%;
+}
+
+.reservation-link {
+  padding: 11px 20px;
+  border: 1px solid currentColor;
+}
+
+.menu-button {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* 메인 화면 */
+
+.hero {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 130px 6% 80px;
+  background:
+    url("images/main.jpg")
+    center / cover no-repeat;
+  color: var(--white);
+  text-align: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 25, 18, 0.28),
+      rgba(20, 25, 18, 0.45)
+    );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 850px;
+}
+
+.hero-subtitle {
+  margin-bottom: 20px;
+  font-family: "Playfair Display", serif;
+  font-size: 17px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin-bottom: 25px;
+  font-size: clamp(42px, 6vw, 76px);
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -3px;
+}
+
+.hero-description {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.hero-buttons,
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 38px;
+}
+
+.button {
+  display: inline-flex;
+  min-width: 150px;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 25px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 500;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.primary-button {
+  background: var(--white);
+  color: var(--main-dark);
+}
+
+.outline-button {
+  border-color: rgba(255, 255, 255, 0.8);
+  color: var(--white);
+}
+
+.outline-button:hover {
+  background: var(--white);
+  color: var(--main-dark);
+}
+
+.dark-button {
+  background: var(--main-dark);
+  color: var(--white);
+}
+
+.scroll-guide {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  z-index: 1;
+  font-size: 11px;
+  letter-spacing: 3px;
+  transform: translateX(-50%);
+}
+
+/* 공통 섹션 */
+
+.section {
+  padding: 120px 7%;
+}
+
+.section-heading {
+  max-width: 720px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.section-label,
+.room-type {
+  margin-bottom: 14px;
+  color: var(--main-color);
+  font-family: "Playfair Display", serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.section-heading h2,
+.location-content h2,
+.contact-box h2 {
+  margin-bottom: 20px;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  letter-spacing: -2px;
+}
+
+.section-heading > p:last-child {
+  color: var(--sub-text);
+}
+
+/* 소개 */
+
+.about-section {
+  background: var(--background);
+}
+
+.about-grid {
+  display: grid;
+  max-width: 1180px;
+  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.about-card {
+  min-height: 280px;
+  padding: 45px 38px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.about-number {
+  display: block;
+  margin-bottom: 35px;
+  color: var(--main-color);
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+}
+
+.about-card h3 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.about-card p {
+  color: var(--sub-text);
+  font-size: 15px;
+}
+
+/* 객실 */
+
+.rooms-section {
+  background: var(--white);
+}
+
+.room-grid {
+  display: grid;
+  max-width: 1280px;
+  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.room-card {
+  overflow: hidden;
+  background: var(--background);
+}
+
+.room-image-wrapper {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.room-image-wrapper img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.room-card:hover img {
+  transform: scale(1.04);
+}
+
+.room-content {
+  padding: 32px;
+}
+
+.room-content h3 {
+  margin-bottom: 8px;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.room-info {
+  margin-bottom: 18px;
+  color: var(--main-color);
+  font-size: 13px;
+}
+
+.room-description {
+  min-height: 54px;
+  margin-bottom: 24px;
+  color: var(--sub-text);
+  font-size: 14px;
+}
+
+.text-link {
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--text);
+  font-size: 14px;
+}
+
+/* 중간 배너 */
+
+.banner-section {
+  position: relative;
+  display: flex;
+  min-height: 520px;
+  align-items: center;
+  justify-content: center;
+  background:
+    url("images/main.jpg")
+    center / cover fixed no-repeat;
+  color: var(--white);
+  text-align: center;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(31, 39, 28, 0.45);
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+  padding: 30px;
+}
+
+.banner-content p {
+  margin-bottom: 18px;
+  font-family: "Playfair Display", serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+}
+
+.banner-content h2 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 400;
+  letter-spacing: -2px;
+}
+
+/* 이용 안내 */
+
+.guide-section {
+  background: var(--light-green);
+}
+
+.guide-grid {
+  display: grid;
+  max-width: 1100px;
+  margin: 0 auto 35px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+}
+
+.guide-item {
+  min-height: 210px;
+  padding: 40px 25px;
+  background: var(--white);
+  text-align: center;
+}
+
+.guide-item h3 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.guide-item p {
+  color: var(--sub-text);
+  font-size: 14px;
+}
+
+.notice-box {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 35px;
+  border: 1px solid #d3d8cf;
+  background: transparent;
+}
+
+.notice-box h3 {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.notice-box p {
+  color: var(--sub-text);
+  font-size: 14px;
+}
+
+/* 위치 */
+
+.location-section {
+  background: var(--white);
+}
+
+.location-content {
+  display: grid;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.location-details {
+  margin: 35px 0;
+}
+
+.location-details div {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.location-details strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.location-details p {
+  color: var(--sub-text);
+  font-size: 14px;
+}
+
+.map-placeholder {
+  display: flex;
+  min-height: 460px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--light-green);
+  text-align: center;
+}
+
+.map-placeholder span {
+  margin-bottom: 12px;
+  color: var(--main-color);
+  font-family: "Playfair Display", serif;
+  font-size: 38px;
+  letter-spacing: 5px;
+}
+
+.map-placeholder p {
+  color: var(--sub-text);
+  font-size: 13px;
+}
+
+/* 예약 문의 */
+
+.contact-section {
+  padding-top: 0;
+  background: var(--white);
+}
+
+.contact-box {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 30px;
+  background: var(--main-color);
+  color: var(--white);
+  text-align: center;
+}
+
+.contact-box .section-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-box > p:not(.section-label, .contact-time) {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.phone-number {
+  display: block;
+  margin-top: 25px;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(32px, 5vw, 50px);
+}
+
+.contact-box .primary-button {
+  color: var(--main-dark);
+}
+
+.contact-box .dark-button {
+  background: #31382d;
+}
+
+.contact-time {
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+}
+
+/* 푸터 */
+
+.footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 55px 7%;
+  background: #252923;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+}
+
+.footer strong {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--white);
+  font-size: 17px;
+}
+
+/* 모바일 */
+
+@media (max-width: 900px) {
+  .header {
+    padding: 0 22px;
+  }
+
+  .menu-button {
+    display: block;
+    z-index: 1001;
+  }
+
+  .navigation {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    display: flex;
+    width: min(78%, 340px);
+    height: 100vh;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 120px 35px;
+    background: var(--white);
+    color: var(--text);
+    flex-direction: column;
+    gap: 28px;
+    transition: right 0.3s ease;
+  }
+
+  .navigation.open {
+    right: 0;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .reservation-link {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-grid,
+  .room-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .room-grid {
+    max-width: 650px;
+  }
+
+  .guide-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .location-content {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .map-placeholder {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --header-height: 66px;
+  }
+
+  .section {
+    padding: 85px 20px;
+  }
+
+  .hero {
+    min-height: 100svh;
+    padding: 110px 20px 80px;
+  }
+
+  .hero h1 {
+    letter-spacing: -2px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+  }
+
+  .hero-buttons,
+  .contact-buttons {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .about-card {
+    min-height: auto;
+    padding: 35px 28px;
+  }
+
+  .room-content {
+    padding: 27px 24px;
+  }
+
+  .banner-section {
+    min-height: 400px;
+    background-attachment: scroll;
+  }
+
+  .guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-item {
+    min-height: auto;
+    padding: 32px 20px;
+  }
+
+  .notice-box {
+    padding: 25px 22px;
+  }
+
+  .contact-section {
+    padding: 0 20px 85px;
+  }
+
+  .contact-box {
+    padding: 60px 22px;
+  }
+
+  .phone-number {
+    font-size: 30px;
+  }
+
+  .footer {
+    align-items: flex-start;
+    padding: 45px 22px;
+    flex-direction: column;
+  }
+}
